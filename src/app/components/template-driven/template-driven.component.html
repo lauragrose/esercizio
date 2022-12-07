@@ -1,0 +1,64 @@
+<div class="container d-flex justify-content-around">
+  <form (ngSubmit)="submit()" #form="ngForm">
+    <h2>Template-Driven Form</h2>
+    <div ngModelGroup="userInfo" #userGroup="ngModelGroup" id="userInfo">
+
+      <!---NOME--->
+      <div class="form-group">
+        <label for="username">Nome *</label>
+        <input type="text" id="nome" [ngModel]="userForm.nome" #nome="ngModel" class="form-control" name="nome"
+          required>
+      </div>
+
+      <!--ALTER EGO --->
+      <p *ngIf="nome.invalid" class="alert alert-danger"><strong>Questo campo è obbligatorio</strong></p>
+      <div class="form-group">
+        <label for="alterego">Alter Ego *</label>
+        <input type="text" id="alterego" name="alterego" [ngModel]="userForm.alterego" #alterego="ngModel"
+          class="form-control" required>
+      </div>
+      <p *ngIf="alterego.invalid" class="alert alert-danger"><strong>Questo campo è obbligatorio</strong></p>
+
+      <!---SUPERPOTERE--->
+      <div class="form-group">
+        <label for="potere">
+          Super Potere *
+        </label>
+        <select id="potere" name="superpoteri" class="form-select" [ngModel]="userForm.superpoteri"
+          #superpoteri="ngModel" required>
+          <option value="">Scegli *</option>
+          <option value="Forza">Super Forza</option>
+          <option value="Velocità">Super Velocità</option>
+          <option value="Intelligenza">Super Intelligenza</option>
+          <option value="Invisibilità">Invisibilità</option>
+        </select>
+      </div>
+      <p *ngIf="superpoteri.value == ''" class="alert alert-danger"><strong>Questo campo è obbligatorio</strong></p>
+
+
+      <!---NEMICO--->
+      <div class="form-group">
+        <label for="nemico">Nemico</label>
+        <input type="text" id="nemico" [ngModel]="userForm.nemico" #nemico="ngModel" name="nemico" class="form-control" [maxlength]="10">
+      </div>
+
+      <!---PIANETA-->
+      <div class="form-group">
+        <label for="pianeta">Aggiungi il tuo pianeta natale</label>
+        <input type="text" id="pianeta" [ngModel]="userForm.pianeta" #pianeta="ngModel" name="pianeta"
+          class="form-control" required [minlength]="5">
+      </div>
+      <p *ngIf="pianeta.invalid" class="alert alert-danger"><strong>Questo campo è obbligatorio</strong></p>
+
+      <!--DEBOLEZZA-->
+      <div class="form-group">
+        <label for="debolezza">Debolezza</label>
+        <input type="text" id="debolezza" [ngModel]="userForm.nemico" #nemico="ngModel" name="debolezza"
+          class="form-control">
+      </div>
+
+      <button type="submit" class="btn btn-info m-2" [disabled]="form.invalid">Invia</button>
+    </div>
+  </form>
+</div>
+
